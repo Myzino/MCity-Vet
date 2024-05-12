@@ -1,7 +1,7 @@
-import User from '../models/user.model.js';
-import Appointment from "../models/appointment.model.js";
-import { errorHandler } from '../utils/error.js';
 import bcryptjs from "bcryptjs";
+import Appointment from "../models/appointment.model.js";
+import User from '../models/user.model.js';
+import { errorHandler } from '../utils/error.js';
 
 export const test = (req, res) => {
     res.json({

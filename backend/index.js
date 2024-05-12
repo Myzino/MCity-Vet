@@ -1,31 +1,34 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import userRoutes from './routes/user.route.js';
-import authRoutes from './routes/auth.route.js';
-import technicianRoutes from './routes/technician.route.js';
 import appointmentRoutes from './routes/appointment.route.js';
+import authRoutes from './routes/auth.route.js';
+import emailRoutes from './routes/email.route.js';
 import inventoryRoutes from './routes/inventory.route.js';
-import serviceRoutes from './routes/service.route.js';
-import systemlogsRoutes from './routes/systemlogs.route.js';
 import medicalrecordRoutes from './routes/medicalrecord.route.js';
 import notificationRoutes from './routes/notification.route.js';
-import emailRoutes from './routes/email.route.js';
+import serviceRoutes from './routes/service.route.js';
+import systemlogsRoutes from './routes/systemlogs.route.js';
+import technicianRoutes from './routes/technician.route.js';
+import userRoutes from './routes/user.route.js';
 
 import cookieParser from 'cookie-parser';
-// import path from 'path';
 dotenv.config();
-
 
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
-mongoose.connect(process.env.MONGODB_URL).then(() => {
+mongoose.connect(process.env.MONGODB_URL1).then(() => {
     console.log('Connected to MongoDB');
 }).catch(error => {
     console.log(error);
+});
+
+// Health Check Route
+app.get('/health', (req, res) => {
+    res.status(200).send('Server is healthy');
 });
 
 app.listen(3000, () => {
